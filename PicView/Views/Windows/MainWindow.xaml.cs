@@ -8,7 +8,7 @@ using static PicView.UILogic.UC;
 
 namespace PicView.Views.Windows
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {

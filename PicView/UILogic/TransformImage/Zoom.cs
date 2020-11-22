@@ -260,7 +260,7 @@ namespace PicView.UILogic.TransformImage
         /// <param name="value"></param>
         internal static void Zoom(double value)
         {
-            if (value > UC.GetQuickSettingsMenu.ZoomSlider.Maximum)
+            if (value > UC.GetQuickSettingsMenu.ZoomSlider.Maximum || ConfigureWindows.GetMainWindow.MainImage.Source == null)
             {
                 return;
             }

@@ -122,27 +122,31 @@ namespace PicView.PicGallery
             Properties.Settings.Default.FullscreenGallery = true;
             GalleryLoad.LoadLayout();
 
-            if (GetFakeWindow == null)
-            {
-                GetFakeWindow = new FakeWindow();
-                GetFakeWindow.grid.Children.Add(new Views.UserControls.Gallery.PicGalleryTopButtons
-                {
-                    Margin = new Thickness(1, 12, 0, 0),
-                });
-            }
+            //if (GetFakeWindow == null)
+            //{
+            //    GetFakeWindow = new FakeWindow();
+            //    GetFakeWindow.grid.Children.Add(new Views.UserControls.Gallery.PicGalleryTopButtons
+            //    {
+            //        Margin = new Thickness(1, 12, 0, 0),
+            //    });
+            //}
 
-            // Switch gallery container to the correct window
-            if (GetMainWindow.ParentContainer.Children.Contains(GetPicGallery))
-            {
-                GetMainWindow.ParentContainer.Children.Remove(GetPicGallery);
-                GetFakeWindow.grid.Children.Add(GetPicGallery);
-            }
-            else if (!GetFakeWindow.grid.Children.Contains(GetPicGallery))
-            {
-                GetFakeWindow.grid.Children.Add(GetPicGallery);
-            }
+            //// Switch gallery container to the correct window
+            //if (GetMainWindow.ParentContainer.Children.Contains(GetPicGallery))
+            //{
+            //    GetMainWindow.ParentContainer.Children.Remove(GetPicGallery);
+            //    GetFakeWindow.grid.Children.Add(GetPicGallery);
+            //}
+            //else if (!GetFakeWindow.grid.Children.Contains(GetPicGallery))
+            //{
+            //    GetFakeWindow.grid.Children.Add(GetPicGallery);
+            //}
 
-            GetFakeWindow.Show();
+            //GetFakeWindow.Show();
+
+            GetMainWindow.Width = GetMainWindow.ParentContainer.Width = MonitorInfo.Width;
+            GetMainWindow.Height = GetMainWindow.ParentContainer.Height = MonitorInfo.Height;
+
             GalleryNavigation.ScrollTo();
             GetMainWindow.Focus();
 
@@ -196,7 +200,11 @@ namespace PicView.PicGallery
         {
             Properties.Settings.Default.FullscreenGallery = false;
             IsOpen = false;
-            GetFakeWindow.Hide();
+
+            if (GetFakeWindow != null)
+            {
+                GetFakeWindow.Hide();
+            }
 
             ConfigureSettings.ConfigColors.UpdateColor();
 
